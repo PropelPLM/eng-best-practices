@@ -1,0 +1,3 @@
+[submodule "force-app/main/default/classes/ApexMockery"]
+	path = force-app/main/default/classes/ApexMockery
+	url = https://github.com/PropelPLM/ApexMockery
