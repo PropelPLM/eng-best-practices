@@ -1,0 +1,3 @@
+[submodule "ApexMockery"]
+	path = ApexMockery
+	url = https://github.com/PropelPLM/ApexMockery
