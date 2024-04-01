@@ -4,8 +4,11 @@ public with sharing class AccountService {
     
     @TestVisible
     private DML dmlService;
+    @TestVisible
+    private ActionRulesService actionRuleService;
     public AccountService() {
         this.dmlService = new DML();
+        this.actionRuleService = new ActionRulesService();
     }
 
     public void createAccounts(List<Account> accounts) {
@@ -14,7 +17,8 @@ public with sharing class AccountService {
 
     public void createAccounts(List<Account> accounts, Boolean allOrNothing) {
         try {
-            if (accounts == null) { throw new AccountServiceException(); }
+            if (accounts == null) { throw new AccountServiceException(System.Label.argument_cant_be_null); }
+            if (!this.actionRuleService.canPerformDML()) { throw new AccountServiceException(System.Label.insufficient_permissions); }
             this.dmlService.insertRecords(accounts, allOrNothing);
         } catch (Exception e) {
             throw new AccountServiceException(e.getMessage());
