@@ -16,4 +16,12 @@
         <shortDescription>Standard error message during permission checks</shortDescription>
         <value>Insufficient permissions</value>
     </labels>
+    <labels>
+        <fullName>feature_is_in_beta</fullName>
+        <categories>Featur eFlag</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Standard error message for features behind flag</shortDescription>
+        <value>Feature is in beta</value>
+    </labels>
 </CustomLabels>
