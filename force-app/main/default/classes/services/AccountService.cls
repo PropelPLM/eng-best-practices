@@ -17,7 +17,7 @@ public with sharing class AccountService {
             if (accounts == null) { throw new AccountServiceException(); }
             this.dmlService.insertRecords(accounts, allOrNothing);
         } catch (Exception e) {
-            throw new AccountServiceException();
+            throw new AccountServiceException(e.getMessage());
         }
     }
 
