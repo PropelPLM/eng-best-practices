@@ -3,8 +3,11 @@ public with sharing class ManufacturerPartService {
 
     @TestVisible
     private DML dmlService;
+    @TestVisible
+    private FeatureFlagService ffService;
     public ManufacturerPartService() {
         this.dmlService = new DML();
+        this.ffService = new FeatureFlagService();
     }
 
     public void updateManufacturer(Id accountId, Manufacturer_Part__c mPart) {
@@ -14,6 +17,7 @@ public with sharing class ManufacturerPartService {
     public void updateManufacturer(Id accountId, List<Manufacturer_Part__c> mParts) {
         try {
             if (accountId == null || accountId.getSObjectType() != Account.SObjectType) { throw new ManufacturerPartServiceException('Invalid account ID.'); }
+            if (!this.ffService.canAssociateManufacturers()){ throw new ManufacturerPartServiceException(System.label.feature_is_in_beta); }
             if (mParts == null || mParts.isEmpty()) { return; }
 
             for (Manufacturer_Part__c mPart : mParts) {
