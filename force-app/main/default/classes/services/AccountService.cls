@@ -15,6 +15,12 @@ public with sharing class AccountService {
         createAccounts(accounts, true);
     }
 
+
+    /**
+     * Creates accounts
+     * @param List<Account> accounts list of accounts to be created
+     * @param Boolean allOrNothing to allow partial operations to the database
+     */
     public void createAccounts(List<Account> accounts, Boolean allOrNothing) {
         try {
             if (accounts == null) { throw new AccountServiceException(System.Label.argument_cant_be_null); }
@@ -34,6 +40,12 @@ public with sharing class AccountService {
         return this.getAccounts(accountIds, 'Id, Name');
     }
 
+    /**
+     * Retrieves accounts
+     * @param List<Id> accountIds list of IDs to retrieve accounts for
+     * @param String fields of accounts that should be retrieved
+     * @return List<Account> accounts retrieved
+     */
     public List<Account> getAccounts(List<Id> accountIds, String fieldString) {
         try {
             return (List<Account>) new QueryBuilder(Account.class)

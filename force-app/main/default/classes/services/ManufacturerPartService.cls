@@ -14,6 +14,11 @@ public with sharing class ManufacturerPartService {
         this.updateManufacturer(accountId, new List<Manufacturer_Part__c>{ mPart });
     }
 
+    /**
+     * Update manufacturer parts' manufacturer field with manufacturer account.
+     * @param Id accountId Id of manufacturer account that manufacturer parts' should be associated with
+     * @param List<Manufacturer_Part__c> mParts manufacturer parts that should be associated to the given accountId
+     */
     public void updateManufacturer(Id accountId, List<Manufacturer_Part__c> mParts) {
         try {
             if (accountId == null || accountId.getSObjectType() != Account.SObjectType) { throw new ManufacturerPartServiceException('Invalid account ID.'); }
@@ -38,6 +43,12 @@ public with sharing class ManufacturerPartService {
         return this.getManufacturerParts(mPartIds, 'Id, Name');
     }
 
+    /**
+     * Retrieves manufacturer parts
+     * @param List<Id> mPartIds list of IDs to retrieve manufacturer parts for
+     * @param String fields of accounts that should be retrieved
+     * @return List<Account> manufacturer parts retrieved
+     */
     public List<Manufacturer_Part__c> getManufacturerParts(List<Id> mPartIds, String fieldString) {
         try {
             return (List<Manufacturer_Part__c>) new QueryBuilder(Manufacturer_Part__c.class)
